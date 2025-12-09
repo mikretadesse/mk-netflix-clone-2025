@@ -1,0 +1,218 @@
+/* =========================================================
+   1) HEADER BASE (Transparent → Black on Scroll)
+   ========================================================= */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 70px;
+  padding: 0 40px;
+  /* width: 100%; */
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: #fff;
+  background: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.scrolled {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* =========================================================
+   2) LEFT SECTION (Logo + Nav)
+   ========================================================= */
+.header_left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo {
+  width: 90px;
+  cursor: pointer;
+}
+
+/* -------- Desktop Navigation -------- */
+.nav_links {
+  display: flex;
+  gap: 20px;
+  transition: all 0.35s ease-in-out;
+}
+
+.nav_links a {
+  color: #e5e5e5;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav_links a:hover {
+  color: #fff;
+}
+
+/* Hamburger icon (hidden desktop) */
+.menu_btn {
+  display: none;
+  cursor: pointer;
+}
+
+/* =========================================================
+   3) RIGHT SECTION (Search, Notif, Profile)
+   ========================================================= */
+.header_right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Icons */
+.icon {
+  color: #e5e5e5;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.icon:hover {
+  color: #fff;
+}
+
+/* Search */
+.search_container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search_input {
+  width: 160px;
+  margin-left: 10px;
+  padding: 4px 8px;
+
+  background: #000;
+  border: 1px solid #fff;
+  color: #fff;
+  border-radius: 4px;
+
+  transition: width 0.3s ease;
+}
+
+.search_input:focus {
+  width: 200px;
+}
+
+/* Profile Dropdown */
+.profile_section {
+  position: relative;
+}
+
+.profile_button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.profile_dropdown {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  width: 140px;
+
+  background: #111;
+  padding: 12px;
+  border-radius: 6px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  z-index: 1000;
+}
+
+.profile_dropdown a {
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.profile_dropdown a:hover {
+  color: #e50914; /* Netflix red */
+}
+
+/* =========================================================
+   4) MOBILE STYLES (max-width: 768px)
+   ========================================================= */
+@media (max-width: 768px) {
+  /* Mobile Nav (Dropdown Menu) */
+  .nav_links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+
+    background: rgba(0, 0, 0, 0.97);
+    overflow: hidden;
+
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+
+    transition: all 0.35s ease-in-out;
+    z-index: 999;
+  }
+
+  .nav_links.active {
+    max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .nav_links a {
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 6px;
+  }
+
+  .nav_links a:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Hamburger visible */
+  .menu_btn {
+    display: block;
+  }
+
+  /* Header spacing adjustments */
+  .header_right {
+    gap: 5px;
+  }
+
+  /* Larger icon touch area */
+  .icon {
+    font-size: 20px;
+  }
+
+  /* Search input smaller */
+  .search_input {
+    width: 120px;
+  }
+
+  .search_input:focus {
+    width: 180px;
+  }
+
+  /* Hide notifications (Netflix behavior) */
+  .notification_icon {
+    display: none;
+  }
+}
